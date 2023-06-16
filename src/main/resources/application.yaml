@@ -1,0 +1,12 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /chapter
+
+student:
+  id: 900
+  name: 张三
+  hobby: [ zz,xx,cc ]
+  elect-product: [ pc ]
+  friends: { k1: aa,k2: qq }
+  course: { courseId: 05,courseName: pp }
