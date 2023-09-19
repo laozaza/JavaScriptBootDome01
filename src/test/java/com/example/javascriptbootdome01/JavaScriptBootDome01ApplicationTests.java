@@ -45,12 +45,19 @@ class JavaScriptBootDome01ApplicationTests {
     @Test
     void contextLoads() throws RuntimeException {
         String result = con.hello();
+        System.out.println("------------1------------------");
+        System.out.println(result);
+        System.out.println("------------2------------------");
         MyProperties myProperties = (MyProperties) applicationContext.getBean("xmlpropertoes");
         if (myProperties != null) {
             myProperties.getResult();
         }
         System.out.println(customProperties);
-        System.out.println(dbConnector.config());
+        System.out.println("------------3------------------");
+       System.out.println(dbConnector.config());
+        System.out.println("------------4------------------");
+        System.out.println(person);
+        System.out.println("------------5------------------");
 
         //SQL数据库
 //查询数据库字段

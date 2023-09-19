@@ -10,10 +10,12 @@
     </parent>
 
     <groupId>com.example</groupId>
-    <artifactId>MavenDemo01</artifactId>
+    <artifactId>JavaScriptBootDemo01</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MavenDemo01</name>
-    <description>MavenDemo01</description>
+    <name>JavaScriptBootDemo01</name>
+    <description>JavaScriptBootDemo01</description>
+<!--    将项目打包声名War-->
+    <packaging>war</packaging>
     <properties>
         <java.version>19</java.version>
     </properties>
@@ -91,6 +93,20 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>2.2.5.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+<!--        声名 使用外部提供的tomcat-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
 
