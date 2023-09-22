@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -8,16 +8,11 @@
 <table>
     <tr>
         <td>bloglogo.jpg</td>
-        <td><a th:href="@{/download(filename='pp.gif')}">下载文件</a></td>
+        <td><a th:href="@{/download(filename='bloglogo.jpg')}">下载文件</a></td>
     </tr>
     <tr>
-        <td>新建文本文档.txt</td>
-        <td><a th:href="@{/download(filename='新建文本文档.txt')}">
-            下载文件</a></td>
-    </tr>
-    <tr>
-        <td>新建文本文档.pdf</td>
-        <td><a th:href="@{/download(filename='未命名1.pdf')}">
+        <td>Spring Boot应用级开发教程.txt</td>
+        <td><a th:href="@{/download(filename='Spring Boot应用级开发教程.txt')}">
             下载文件</a></td>
     </tr>
 </table>

@@ -45,7 +45,7 @@ public class FileController {
             //重新生成文件名（根据具体情况生成对应文件名）
             fileName = UUID.randomUUID() + "_" + fileName;
             //指定上传文件本地存储目录，不存在则需要提前创建
-            String dirPath = "D:/IDEAWORK/JavaScriptWork/JavaScriptBootDome01/src/main/resources/static/login/file/";
+            String dirPath = "D:/IDEAWORK/JavaScriptWork01/JavaScriptBootDome01/src/main/resources/static/login/file/";
             File filePath = new File(dirPath);
             if (!filePath.exists()) {
                 filePath.mkdirs();
@@ -66,7 +66,7 @@ public class FileController {
     @GetMapping("/download")
     public ResponseEntity<byte[]> fileDownload(HttpServletRequest request, String filename) throws Exception {
         //指定要下载的文件根路径
-        String dirPath = "D:/IDEAWORK/JavaScriptWork/JavaScriptBootDome01/src/main/resources/static/login/file/";
+        String dirPath = "D:/IDEAWORK/JavaScriptWork01/JavaScriptBootDome01/src/main/resources/static/login/file/";
         //创建该文件对象
         File file = new File(dirPath + File.separator + filename);
         //设置响应头
