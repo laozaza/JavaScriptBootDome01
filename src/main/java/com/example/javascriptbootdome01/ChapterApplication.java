@@ -9,23 +9,23 @@ import org.springframework.cache.annotation.EnableCaching;
 
 
 /**
- * @BelongsProject: JavaScriptBootDome01  //ÏîÄ¿Ãû
- * @BelongsPackage: com.example.javascriptbootdome01.Thymeleaf  //°üÃû
- * @ClassName ChapterApplication                //ÀàÃû
- * @Author: laozaza                   //×÷Õß
- * @CreateTime: 2023-09-23  16:22  //Ê±¼ä
- * @Description: TODO                //ÀàÃèÊö
- * @Version: 1.0                     //°æ±¾
+ * @BelongsProject: JavaScriptBootDome01  //é¡¹ç›®å
+ * @BelongsPackage: com.example.javascriptbootdome01.Thymeleaf  //åŒ…å
+ * @ClassName ChapterApplication                //ç±»å
+ * @Author: laozaza                   //ä½œè€…
+ * @CreateTime: 2023-09-23  16:22  //æ—¶é—´
+ * @Description: TODO                //ç±»æè¿°
+ * @Version: 1.0                     //ç‰ˆæœ¬
  */
-@SpringBootApplication//ÓÃ×¢½â±êÊ¶µÄÀà×÷ÎªspringbootµÄÈë¿ÚÀà
-@ServletComponentScan//¿ªÆô»ùÓÚ×¢½â·½Ê½µÄServlet×é¼şÉ¨ÃèÖ§³Ö
-@EnableCaching//¿ªÆôSpringBoot»ùÓÚ×¢½âµÄ»º´æ¹ÜÀíÖ§³Ö
+@SpringBootApplication//ç”¨æ³¨è§£æ ‡è¯†çš„ç±»ä½œä¸ºspringbootçš„å…¥å£ç±»
+@ServletComponentScan//å¼€å¯åŸºäºæ³¨è§£æ–¹å¼çš„Servletç»„ä»¶æ‰«ææ”¯æŒ
+@EnableCaching//å¼€å¯SpringBootåŸºäºæ³¨è§£çš„ç¼“å­˜ç®¡ç†æ”¯æŒ
 public class ChapterApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(ChapterApplication.class, args);
     }
     @Override
-    //³ÌĞòÖ÷Àà¼Ì³ĞSpringBootServletInitializer, ²¢ÖØĞ´configure()·½·¨
+    //ç¨‹åºä¸»ç±»ç»§æ‰¿SpringBootServletInitializer, å¹¶é‡å†™configure()æ–¹æ³•
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(ChapterApplication.class);
     }
