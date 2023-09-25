@@ -42,14 +42,4 @@ public class JpaController {
     public void deletaDiscuss(@PathVariable("id") int comment_id){
         discussService.deleteDiscuss(comment_id);
     }
-    //根据id查询评论信息
-    @Cacheable(cacheNames = "comment")
-    public Discuss findBYId(@PathVariable("id")int comment_id){
-        Optional<Discuss> optional = discussRepository.findById(comment_id);
-        //判断optional是否存在
-        if (optional.isPresent()){
-            return optional.get();
-        }
-        return null;
-    }
 }
