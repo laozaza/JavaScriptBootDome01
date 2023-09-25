@@ -1,7 +1,6 @@
 package com.example.javascriptbootdome01.SQL.jpa;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,20 +25,24 @@ public class JpaController {
     private DiscussRepository discussRepository;
     @Autowired
     private DiscussService discussService;
+
     @GetMapping("/get/{id}")
-    public Discuss findById(@PathVariable("id") int comment_id){
-        Discuss discuss= discussService.findById(comment_id);
+    public Discuss findById(@PathVariable("id") int comment_id) {
+        Discuss discuss = discussService.findById(comment_id);
         return discuss;
     }
+
     @GetMapping("/update/{id}/{author}")
-    public Discuss updateDiscuss(@PathVariable("id") int comment_id,@PathVariable("author") String author){
+    public Discuss updateDiscuss(@PathVariable("id") int comment_id,
+                                 @PathVariable("author") String author) {
         Discuss discuss = discussService.findById(comment_id);
         discuss.setAuthor(author);
-        Discuss updateDiscuss=discussService.updateDiscuss(discuss);
+        Discuss updateDiscuss = discussService.updateDiscuss(discuss);
         return updateDiscuss;
     }
+
     @GetMapping("/delete/{id}")
-    public void deletaDiscuss(@PathVariable("id") int comment_id){
+    public void deletaDiscuss(@PathVariable("id") int comment_id) {
         discussService.deleteDiscuss(comment_id);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.javascriptbootdome01.SQL.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -18,21 +20,26 @@ import java.util.Optional;
 public class DiscussService {
     @Autowired
     private DiscussRepository discussRepository;
+
     //根据id查询评论信息
-    @Cacheable(cacheNames = "discuss")//将运行结果缓存，以后查询相同的数据，直接从缓存中取，不需要调用方法。
-    public Discuss findById(int comment_id){
+    @Cacheable(cacheNames = "comment", unless = "#result==null")// 表示查询结果为空不进行缓存,将运行结果缓存，以后查询相同的数据，直接从缓存中取，不需要调用方法。
+    public Discuss findById(int comment_id) {
         Optional<Discuss> optional = discussRepository.findById(comment_id);
         //判断optional是否存在
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             return optional.get();
         }
         return null;
     }
-    public Discuss updateDiscuss(Discuss discuss){
-        discussRepository.updateDiscuss(discuss.getAuthor(),discuss.getId());
+
+    @CachePut(cacheNames = "comment", key = "#result.id")//将运行结果更新
+    public Discuss updateDiscuss(Discuss discuss) {
+        discussRepository.updateDiscuss(discuss.getAuthor(), discuss.getId());
         return discuss;
     }
-    public void deleteDiscuss(int comment_id){
+
+    @CacheEvict(cacheNames = "comment")//将redis服务中的comment删除
+    public void deleteDiscuss(int comment_id) {
         discussRepository.deleteById(comment_id);
     }
 
