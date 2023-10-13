@@ -1,4 +1,4 @@
-//package com.example.javascriptbootdome01.Security;
+package com.example.javascriptbootdome01.Security;//package com.example.javascriptbootdome01.Security;
 //
 //
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
