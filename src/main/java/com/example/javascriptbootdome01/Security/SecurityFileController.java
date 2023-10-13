@@ -23,4 +23,19 @@ public class SecurityFileController {
         System.out.println(TAG + "===toDeil===" + value);
         return value;
     }
+    @GetMapping("/userLogin")
+    public String toLoginPage(){
+        return "login";
+    }
+
+    @GetMapping("/loginError")
+    String loginerror(){
+        return "login/loginerror";
+    }
+
+    @GetMapping("/index2")
+    String index2(){
+        return "login/index2";
+    }
+
 }

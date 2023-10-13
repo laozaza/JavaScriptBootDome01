@@ -28,8 +28,6 @@ public class CustomerService {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    private String cacheName = "customer::";
-
 
     //    用户名查询用户
     public Customer getCustomer(String username) {

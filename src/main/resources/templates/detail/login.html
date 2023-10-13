@@ -13,12 +13,10 @@
     <img class="mb-4" th:src="@{/login/img/login.jpg}" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">请登录</h1>
 <!--    用户登录错误信息提示框-->
-    <div th:if="${param.error}" style="color: black;font-size:1.1em">
-        <img th:src="@{/login/img/error.jpg}" width="72"height="72">
-        <p>用户名密码错误,请重新登陆.</p>
+    <div th:if="${param.error}" style="color: black;height: 40px;text-align: left; font-size:1.1em">
+        <img th:src="@{/login/img/error.jpg}">
+        用户名密码错误，请重新登陆。
     </div>
-
-
     <input type="text" name="name" class="form-control"
            th:placeholder="#{login.username}" required="" autofocus="">
     <input type="password" name="pwd" class="form-control"
