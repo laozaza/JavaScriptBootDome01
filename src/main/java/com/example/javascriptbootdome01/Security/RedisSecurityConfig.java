@@ -1,11 +1,13 @@
 package com.example.javascriptbootdome01.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 
 import javax.sql.DataSource;
 
@@ -53,14 +55,12 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 //        使用UserDetailsServicelmpl进行身份验证
-        auth.userDetailsService(userDetailsServicelmpl).passwordEncoder(bCryptPasswordEncoder);
-    }
-
+        auth.userDetailsService(userDetailsServicelmpl).passwordEncoder(bCryptPasswordEncoder);}
 
     @Override
-    protected void configure(HttpSecurity http)throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/login/**").permitAll()//对login.html文件进行统一放行
-                .antMatchers("/detail/common/**").hasAnyRole("common","vip")//放行common用户和vip用户访问
+                .antMatchers("/detail/common/**").hasAnyRole("common", "vip")//放行common用户和vip用户访问
                 .antMatchers("/detail/vip/**").hasAnyRole("vip")//只放行VIP用户访问
                 .anyRequest().authenticated();
 
@@ -69,7 +69,20 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("name").passwordParameter("pwd")//用户名密码
                 .defaultSuccessUrl("/index2")//登录成功后跳转
                 .failureUrl("/loginError");//登录失败后跳转
-//自定义用户退出控制
+         //自定义用户退出控制
         http.logout().logoutUrl("/mylogout").logoutSuccessUrl("/");
+
+        //定制Remember-me记住我功能
+        http.rememberMe().rememberMeParameter("rememberme")//指示在登录时记住用户的HTTP参数
+                .tokenValiditySeconds(20)//设置记住我有效期为单位为s
+                .tokenRepository(tokenRepository());//对Cookie信息进行持久化管理
+    }
+
+    //持久化token存储
+    @Bean
+    public JdbcTokenRepositoryImpl tokenRepository(){
+        JdbcTokenRepositoryImpl jr=new JdbcTokenRepositoryImpl();
+        jr.setDataSource(dataSource);
+        return jr;
     }
 }
