@@ -8,28 +8,43 @@
 <body>
 <h1 align="center">欢迎进入电影网站首页</h1>
 <div sec:authorize="isAuthenticated()"><!--  判断用户是否登录  -->
-    <h2 align="center">您的用户名为
+    <h2 align="center">
+        您的用户名为
         <span sec:authentication="name" style="color: blue"></span>
+        您的权限为
+        <span sec:authentication="principal.authorities" style="color: blue"></span>
+        ,你可以看一下电影
     </h2>
 </div>
 <div>
-    <form th:action="@{/mylogout}"method="post">
+    <form th:action="@{/mylogout}" method="post">
         <input th:type="submit" th:value="注销"/>
     </form>
-    <form th:action="@{/toupdateUser}"method="post">
-        <input th:type="submit" th:value="修改用户名" />
+    <form th:action="@{/toupdateUser}" method="post">
+        <input th:type="submit" th:value="修改用户名"/>
     </form>
 </div>
 <hr/>
-<h3>普通电影</h3>
-<ul>
-    <li><a th:href="@{/detail/common/1}">重生之异世界当纯爱牛头人  うまれかわっ 生まれ変わっ た い 異 せかい 世界 じゅんあい 純愛 ごず 牛頭 にん 人 になります </a></li>
-    <li><a th:href="@{/detail/common/2}">被大卡车撞倒后转生异世界被牛头人抓住 ウォーターサーバーに はね 撥ね られ い 異 せかい 世界 に てんしょう 転生 して ごず 牛頭 にん 人 に つかまっ 捕まっ たのです </a></li>
-</ul>
-<h3>VIP电影</h3>
-<ul>
-    <li><a th:href="@{/detail/vip/1}">哥布林巢穴里的棍之勇者成名录 ゴブリンの す 巣 にいた こん 棍 の ゆうしゃ 勇者 めいかん 名鑑 です </a></li>
-    <li><a th:href="@{/detail/vip/2}">剃须然后捡到开着大卡车的牛头人战士 ひげ 髭 を そっ 剃っ てトラックを はしら 走ら せていたブルグマンを ひろい 拾い ました </a></li>
-</ul>
+<div sec:authorize="hasRole('common')">
+    <h3>普通电影</h3>
+    <ul>
+        <li><a th:href="@{/detail/common/1}">重生之异世界当纯爱牛头人 うまれかわっ 生まれ変わっ た い 異 せかい 世界 じゅんあい 純愛 ごず 牛頭
+            にん 人 になります </a></li>
+        <li><a th:href="@{/detail/common/2}">被大卡车撞倒后转生异世界被牛头人抓住 ウォーターサーバーに はね 撥ね られ い 異 せかい 世界 に
+            てんしょう 転生 して ごず 牛頭 にん 人 に つかまっ 捕まっ たのです </a></li>
+    </ul>
+</div>
+
+<div sec:authorize="hasAnyAuthority('ROLE_vip')">
+    <h3>VIP电影</h3>
+    <ul>
+        <li><a th:href="@{/detail/vip/1}">哥布林巢穴里的棍之勇者成名录 ゴブリンの す 巣 にいた こん 棍 の ゆうしゃ 勇者 めいかん 名鑑
+            です </a>
+        </li>
+        <li><a th:href="@{/detail/vip/2}">剃须然后捡到开着大卡车的牛头人战士 ひげ 髭 を そっ 剃っ てトラックを はしら 走ら せていたブルグマンを
+            ひろい 拾い
+            ました </a></li>
+    </ul>
+</div>
 </body>
 </html>

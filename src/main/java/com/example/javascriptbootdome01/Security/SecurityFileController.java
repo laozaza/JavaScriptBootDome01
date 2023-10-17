@@ -51,7 +51,7 @@ public class SecurityFileController {
     }
 
     //登录后的影片主页面
-    @GetMapping("/index2")
+    @PostMapping("/index2")
     String index2() {
         return "login/index2";
     }
@@ -108,12 +108,9 @@ public class SecurityFileController {
 
         //获取应用上下文
         SecurityContext context = SecurityContextHolder.getContext();
-        System.out.println("UserDetails:"+context);
         //获取用户相关信息
         Authentication authentication = context.getAuthentication();
         UserDetails principal = (UserDetails) authentication.getPrincipal();
-        System.out.println(principal);
-        System.out.println("username:"+principal.getUsername());
 
         Customer customer=new Customer();
         customer= customerService.findById(principal.getUsername());
