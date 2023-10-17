@@ -81,16 +81,29 @@ public class CustomerService {
 
     //业务控制：使用唯一用户名查询权限
     public List<Authority> getCustomerAuthority(String username) {
+        // 初始化一个Authority对象列表
         List<Authority> authorities = null;
+
+        // 从Redis缓存中尝试获取Authority对象列表，键为"authorities_"与username的拼接
         Object o = redisTemplate.opsForValue().get("authorities_" + username);
+
+        // 如果在缓存中找到了Authority对象列表（即，它不为null）
         if (o != null) {
+            // 则将其赋值给authorities
             authorities = (List<Authority>) o;
         } else {
+            // 如果在缓存中没有找到Authority对象列表（即，它为null）
+            // 则尝试从repository（可能是数据库）中获取Authority对象列表
             authorities = authorityRepository.findAuthoritiesByUsername(username);
+
+            // 如果在repository中找到了Authority对象列表
             if (authorities.size() > 0) {
+                // 则将其存入Redis缓存，键为"authorities_"与username的拼接
                 redisTemplate.opsForValue().set("authorities_" + username, authorities);
             }
         }
+
+        // 返回Authority对象列表
         return authorities;
     }
 
