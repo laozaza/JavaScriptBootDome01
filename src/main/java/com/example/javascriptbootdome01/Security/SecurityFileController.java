@@ -1,18 +1,18 @@
 package com.example.javascriptbootdome01.Security;
 
+import com.example.javascriptbootdome01.SQL.jpa.Discuss;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
-
 /**
  * @BelongsProject: JavaScriptBootDome01  //项目名
  * @BelongsPackage: com.example.javascriptbootdome01.Security  //包名
@@ -24,6 +24,10 @@ import java.util.Enumeration;
  */
 @Controller
 public class SecurityFileController {
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private CustomerRepository customerRepository;
     private String TAG = "FilmeController";
 
     //影片详情页
@@ -52,6 +56,8 @@ public class SecurityFileController {
         return "login/index2";
     }
 
+
+
     //使用HttpSession获取用户信息
     @GetMapping("/getuserBySession")
     @ResponseBody
@@ -70,6 +76,7 @@ public class SecurityFileController {
             UserDetails principal = (UserDetails) authentication.getPrincipal();
             System.out.println(principal);
             System.out.println("username:" + principal.getUsername());
+
         }
     }
 //使用SecurityContextHolder获取用户登录信息
@@ -84,5 +91,42 @@ public class SecurityFileController {
         UserDetails principal = (UserDetails) authentication.getPrincipal();
         System.out.println(principal);
         System.out.println("username:"+principal.getUsername());
+
+
+
+    }
+
+    //向用户修改页
+    @RequestMapping("/toupdateUser")//这里使用 @GetMapping会报错因为 @GetMapping是GET类型不是POST
+    public String toupdateuser(){return "/csrf/csrfTest";}
+
+
+    //用户修改提交处理
+    @ResponseBody
+    @PostMapping(value = "/updateUser")
+    public Customer updateUser(@RequestParam String username, @RequestParam String password,HttpServletRequest request){
+
+        //获取应用上下文
+        SecurityContext context = SecurityContextHolder.getContext();
+        System.out.println("UserDetails:"+context);
+        //获取用户相关信息
+        Authentication authentication = context.getAuthentication();
+        UserDetails principal = (UserDetails) authentication.getPrincipal();
+        System.out.println(principal);
+        System.out.println("username:"+principal.getUsername());
+
+        Customer customer=new Customer();
+        customer= customerService.findById(principal.getUsername());
+        System.out.println(customer);
+        customer.setUsername(username);
+        System.out.println(customer.getUsername());
+         customerService.updateUser(customer.getUsername(),customer.getId());
+
+//        System.out.println(username);
+//        System.out.println(password);
+//        String csrf_token = request.getParameter("_csrf");
+//        System.out.println(csrf_token);
+        return customer;
+
     }
 }

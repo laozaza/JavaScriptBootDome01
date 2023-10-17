@@ -1,6 +1,6 @@
 package com.example.javascriptbootdome01.SQL.jpa;
 
-import org.springframework.data.domain.Pageable;
+import  org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +21,7 @@ public interface DiscussRepository extends JpaRepository<Discuss, Integer> {
 
     //4、根据评论id修改评论作者author
     @Transactional
-    @Modifying
+    @Modifying//JPA会以更新类语句来执行，而不再是以查询语句执行。
     @Query("UPDATE t_comment c SET c.author = ?1 WHERE  c.id = ?2")
     public int updateDiscuss(String author, Integer id);
 

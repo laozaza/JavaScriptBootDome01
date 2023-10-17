@@ -1,14 +1,25 @@
 ﻿<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>影视直播厅</title>
 </head>
 <body>
 <h1 align="center">欢迎进入电影网站首页</h1>
-<form th:action="@{/mylogout}"method="post">
-    <input th:type="submit" th:value="注销"/>
-</form>
+<div sec:authorize="isAuthenticated()"><!--  判断用户是否登录  -->
+    <h2 align="center">您的用户名为
+        <span sec:authentication="name" style="color: blue"></span>
+    </h2>
+</div>
+<div>
+    <form th:action="@{/mylogout}"method="post">
+        <input th:type="submit" th:value="注销"/>
+    </form>
+    <form th:action="@{/toupdateUser}"method="post">
+        <input th:type="submit" th:value="修改用户名" />
+    </form>
+</div>
 <hr/>
 <h3>普通电影</h3>
 <ul>

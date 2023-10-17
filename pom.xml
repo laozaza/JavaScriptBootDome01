@@ -124,6 +124,12 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
+<!--        添加thymeleaf-extras-springsecurity5依赖启动器-->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
+
 
     </dependencies>
 

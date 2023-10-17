@@ -6,6 +6,7 @@ import com.example.javascriptbootdome01.SQL.Article;
 import com.example.javascriptbootdome01.SQL.ArticleMapper;
 import com.example.javascriptbootdome01.SQL.Comment;
 import com.example.javascriptbootdome01.SQL.CommentMapper;
+import com.example.javascriptbootdome01.Security.Customer;
 import com.example.javascriptbootdome01.ShujuFanhui.Person;
 import com.example.javascriptbootdome01.ShujuFanhui.Student;
 import com.example.javascriptbootdome01.ShujuFanhui.User;
@@ -42,6 +43,7 @@ class JavaScriptBootDome01ApplicationTests {
     private CommentMapper commentMapper;
     @Autowired
     private ArticleMapper articleMapper;
+
     @Test
     void contextLoads() throws RuntimeException {
         String result = con.hello();

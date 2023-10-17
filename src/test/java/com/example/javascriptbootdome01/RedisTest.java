@@ -5,10 +5,13 @@ import com.example.javascriptbootdome01.SQL.Redis.Address;
 import com.example.javascriptbootdome01.SQL.Redis.Family;
 import com.example.javascriptbootdome01.SQL.Redis.Person1;
 import com.example.javascriptbootdome01.SQL.Redis.Person1Repository;
+import com.example.javascriptbootdome01.Security.Customer;
+import com.example.javascriptbootdome01.Security.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,8 @@ import java.util.List;
 class RedisTest {
     @Autowired
     private Person1Repository repository1;
+    @Autowired
+    private CustomerService customerService;
     static Person1 save;
 
     @Test

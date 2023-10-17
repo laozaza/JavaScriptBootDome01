@@ -16,6 +16,7 @@ import java.io.Serializable;
 public class Customer implements Serializable {
     @Id //表明映射对应的主键id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //设置主键自增策略
+    @Column(name = "id") //指定映射的表名字段
     private Integer id;
     private String username;
     private String password;
