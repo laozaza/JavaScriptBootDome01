@@ -85,7 +85,6 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(20)//设置记住我有效期为单位为s这里设置有效期单位为秒
                 .tokenRepository(tokenRepository());//对Cookie信息进行持久化管理
 
-
     }
 
     //持久化token存储

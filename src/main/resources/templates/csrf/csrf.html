@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>请注销</title>
 </head>
 <body>
-<form th:action="@{/}" method="post">
-  <!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="_csrf.token">-->
-  <br>
-  <button type="submit">返回</button>
+<div>
+    <h2 align="center">
+        <span>
+        修改成功，请注销。
+    </span>
+        <form th:action="@{/mylogout}" method="post">
+            <input th:type="submit" th:value="注销" size="100" width="150" height="150"/>
+        </form>
+    </h2>
+</div>
+<br>
 </form>
 </body>
 </html>

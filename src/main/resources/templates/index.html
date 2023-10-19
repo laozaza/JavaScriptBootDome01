@@ -3,11 +3,15 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+
     <title>影视直播厅</title>
 </head>
 <body>
 <h1 align="center">欢迎进入电影网站首页</h1>
 <form th:action="@{/index2}"method="post">
+
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" 	th:value="${_csrf.token}"/>-->
+
     <input th:type="submit" th:value="登录" width="20" height="20"/>
 </form>
 <hr/>
