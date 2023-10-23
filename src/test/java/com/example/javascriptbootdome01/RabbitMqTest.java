@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * 用于测试RabbitMQ消息传递的测试类
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RabbitMqTest {
@@ -21,7 +24,9 @@ public class RabbitMqTest {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    // 此方法用于配置 RabbitMQ 的交换器和队列
+    /**
+     * 配置RabbitMQ的交换器和队列
+     */
     @Test
     public void amqpAdmin() {
         // 1. 定义一个名为 "fanout_exchange" 的 fanout 类型的交换器
@@ -38,63 +43,71 @@ public class RabbitMqTest {
         amqpAdmin.declareBinding(new Binding("fanout_queue_wechat", Binding.DestinationType.QUEUE, "fanout_exchange", "", null));
     }
 
-    // 此方法用于发布消息到 fanout 类型的交换器
+    /**
+     * 向 fanout 类型的交换器发布消息，不指定路由键
+     */
     @Test
     public void psubPublisherAll() {
         User user = new User();
         user.setId(1);
         user.setUsername("石头");
-        // 发布 user 对象消息到名为 "fanout_exchange" 的 fanout 交换器
         rabbitTemplate.convertAndSend("fanout_exchange", "", user);
-        //给所有队列发消息
+        // 给所有队列发消息
     }
+
+    /**
+     * 向 fanout 类型的交换器发布消息，指定路由键为 "info.qq"
+     */
     @Test
     public void topicPublisherQQ() {
         User user = new User();
         user.setId(1);
         user.setUsername("石头");
-        // (4) 发送同时订阅邮件、qq 和微信的用户信息，路由键为 "info.email.qq.wechat"
-        rabbitTemplate.convertAndSend("topic_exchange", "info.qq",user );
-        //单独给qq队列消息
+        rabbitTemplate.convertAndSend("topic_exchange", "info.qq", user);
+        // 单独给qq队列发消息
     }
 
+    /**
+     * 向 fanout 类型的交换器发布消息，指定路由键为 "info.email"
+     */
     @Test
     public void topicPublisherEmail() {
         User user = new User();
         user.setId(1);
         user.setUsername("石头");
-        // (4) 发送同时订阅邮件、qq 和微信的用户信息，路由键为 "info.email.qq.wechat"
-        rabbitTemplate.convertAndSend("topic_exchange", "info.email",user );
-        //单独给邮件队列发消息
+        rabbitTemplate.convertAndSend("topic_exchange", "info.email", user);
+        // 单独给邮件队列发消息
     }
 
+    /**
+     * 向 fanout 类型的交换器发布消息，指定路由键为 "info.wechat"
+     */
     @Test
     public void topicPublisherWechat() {
         User user = new User();
         user.setId(1);
         user.setUsername("石头");
-        // (4) 发送同时订阅邮件、qq 和微信的用户信息，路由键为 "info.email.qq.wechat"
-        rabbitTemplate.convertAndSend("topic_exchange", "info.wechat",user );
-        //单独给微信队列发消息
+        rabbitTemplate.convertAndSend("topic_exchange", "info.wechat", user);
+        // 单独给微信队列发消息
     }
 
+    /**
+     * 向 fanout 类型的交换器发布消息，指定路由键为 "info.wechat.qq"
+     */
     @Test
     public void topicPublisherQQWechat() {
         User user = new User();
         user.setId(1);
         user.setUsername("石头");
-        // (4) 发送同时订阅邮件、qq 和微信的用户信息，路由键为 "info.email.qq.wechat"
-        rabbitTemplate.convertAndSend("topic_exchange", "info.wechat.qq",user );
-        //只给QQ、微信队列发消息
+        rabbitTemplate.convertAndSend("topic_exchange", "info.wechat.qq", user);
+        // 只给QQ、微信队列发消息
     }
 
-
-    // 此方法用于发布消息到 "routing_exchange" 的路由交换器
+    /**
+     * 向路由交换器发布消息，指定路由键为 "error_routing_key"
+     */
     @Test
     public void routingPublisher() {
-        // 发布字符串消息到 "routing_exchange"，指定路由键为 "error_routing_key"
         rabbitTemplate.convertAndSend("routing_exchange", "error_routing_key", "routing send error message");
     }
-
-    // 此方法用于发布消息到 "topic_exchange" 的主题交换器
 }

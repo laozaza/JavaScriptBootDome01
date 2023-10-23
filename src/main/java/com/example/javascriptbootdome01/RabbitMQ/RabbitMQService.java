@@ -7,6 +7,13 @@ import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
+/**
+ * @BelongsProject: JavaScriptBootDome01  //项目名
+ * @BelongsPackage: com.example.javascriptbootdome01.RabbitMQ  //包名
+ * @ClassName qe                //类名
+ * @Author: laozaza                   //作者
+ * @CreateTime: 2023-10-23  16:58  //时间
+ **/
 @Service
 public class RabbitMQService {
     /**

@@ -3,7 +3,6 @@ package com.example.javascriptbootdome01;
 
 import com.example.javascriptbootdome01.SQL.jpa.Discuss;
 import com.example.javascriptbootdome01.SQL.jpa.DiscussRepository;
-import com.example.javascriptbootdome01.Security.Customer;
 import com.example.javascriptbootdome01.Security.CustomerRepository;
 import com.example.javascriptbootdome01.Security.CustomerService;
 import org.junit.jupiter.api.Test;

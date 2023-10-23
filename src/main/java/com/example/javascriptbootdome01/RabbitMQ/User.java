@@ -1,5 +1,12 @@
 package com.example.javascriptbootdome01.RabbitMQ;
 
+/**
+ * @BelongsProject: JavaScriptBootDome01  //项目名
+ * @BelongsPackage: com.example.javascriptbootdome01.RabbitMQ  //包名
+ * @ClassName qe                //类名
+ * @Author: laozaza                   //作者
+ * @CreateTime: 2023-10-23  16:58  //时间
+ **/
 public class User {
     private Integer id;
     private String username;

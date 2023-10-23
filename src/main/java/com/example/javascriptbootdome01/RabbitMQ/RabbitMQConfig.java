@@ -7,6 +7,13 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @BelongsProject: JavaScriptBootDome01  //项目名
+ * @BelongsPackage: com.example.javascriptbootdome01.RabbitMQ  //包名
+ * @ClassName qe                //类名
+ * @Author: laozaza                   //作者
+ * @CreateTime: 2023-10-23  16:58  //时间
+ **/
 @Configuration
 public class RabbitMQConfig {
     // 配置消息转换器，这里使用Jackson2JsonMessageConverter将消息转换为JSON格式
