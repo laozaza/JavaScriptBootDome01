@@ -22,13 +22,13 @@ public class ScheduledTaskService {
     private Integer count3 = 1;
 
     // 使用fixedRate属性，每10秒执行一次任务，任务执行完后休眠5秒
-    @Async
-    @Scheduled(fixedRate = 10000)
-    public void scheduledTaskWithFixedRate() throws InterruptedException {
-        System.out.println("fixedRate1执行时间：" + dateFormat.format(new Date()));
-        Thread.sleep(5000); // 代码块休眠5秒
-    }
-
+//    @Async
+//    @Scheduled(fixedRate = 10000)
+//    public void scheduledTaskWithFixedRate() throws InterruptedException {
+//        System.out.println("fixedRate1执行时间：" + dateFormat.format(new Date()));
+//        Thread.sleep(5000); // 代码块休眠5秒
+//    }
+//
 //    // 使用fixedRate属性，每15秒执行一次任务，任务执行完后休眠15秒
 //    @Async
 //    @Scheduled(fixedRate = 15000)
@@ -68,8 +68,8 @@ public class ScheduledTaskService {
 //        System.out.println("initialDelay2执行时间：" + dateFormat.format(new Date()));
 //        Thread.sleep(5000); // 代码块休眠5秒
 //    }
-
-    // 使用cron表达式，每分钟执行一次任务
+//
+//     //使用cron表达式，每分钟执行一次任务
 //    @Scheduled(cron = "0 * * * * *")
 //    // 秒、分、小时、日、月、星期 MON-FRI表示周一到周五
 //    // 0：代表秒，表示在每分钟的第0秒触发任务。
