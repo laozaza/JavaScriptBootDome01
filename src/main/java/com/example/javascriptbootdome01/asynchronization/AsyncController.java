@@ -48,17 +48,17 @@ public class AsyncController {
     @GetMapping("/statistics")
     public String statistics() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Long startTime = System.currentTimeMillis();
-
         // 启动异步任务，分别计算1-1000和1000-2000的整数总和
         Future<Integer> futureA = myService.processA();
         Future<Integer> futureB = myService.processB();
         // 等待异步任务完成并汇总结果
+
         int total = futureA.get() + futureB.get();
+        Long startTime = System.currentTimeMillis();
         System.out.println("----------------------------");
-        System.out.println("异步任务数据统计汇总结果： " + total);
         Long endTime = System.currentTimeMillis();//结束时间（没调用）
         System.out.println("开始执行时间" + sdf.format(new Date(startTime)));
+        System.out.println("异步任务数据统计汇总结果： " + total);
         return "success";
     }
 }

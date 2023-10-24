@@ -23,7 +23,8 @@ public class AsyncService {
         Long startTime = System.currentTimeMillis();
         Thread.sleep(5000);
         Long endTime = System.currentTimeMillis();
-        System.out.println("短信业务执行完成耗时：" + (endTime - startTime)); }
+        System.out.println("短信业务执行完成耗时：" + (endTime - startTime));
+    }
 
     @Async
     public Future<Integer> processA() throws Exception {
@@ -31,8 +32,12 @@ public class AsyncService {
         int end = 1000;
         int sum = 0;
 
+
+        // 打印开始时间
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // 获取开始时间
         long startTime = System.currentTimeMillis();
+        System.out.println("计算1-1000的值总和开始执行时间: " + sdf.format(new Date(startTime)));
 
         // 计算总和
         for (int i = start; i <= end; i++) {
@@ -41,10 +46,6 @@ public class AsyncService {
 
         // 打印结果
         System.out.println("从 " + start + " 到 " + end + " 的整数总和是: " + sum);
-
-        // 打印开始时间和结束时间
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println("计算1-1000的值总和开始执行时间: " + sdf.format(new Date(startTime)));
 
         // 休眠5秒
         try {
@@ -66,23 +67,22 @@ public class AsyncService {
         int end = 2000;
         int sum = 0;
 
+      // 打印开始时间
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // 获取开始时间
         long startTime = System.currentTimeMillis();
+        System.out.println("计算1000 - 2000的值总和开始执行时间: " + sdf.format(new Date(startTime)));
 
         // 计算总和
         for (int i = start; i <= end; i++) {
             sum += i;
         }
 
-        // 获取结束时间
-        long endTime = System.currentTimeMillis();
-
         // 打印结果
         System.out.println("从 " + start + " 到 " + end + " 的整数总和是: " + sum);
 
-        // 打印开始时间和结束时间
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println("计算1000 - 2000的值总和开始执行时间: " + sdf.format(new Date(startTime)));
+// 获取结束时间
+        long endTime = System.currentTimeMillis();
         System.out.println("计算1000 - 2000的值总和结束时间: " + sdf.format(new Date(endTime)));
         return new AsyncResult<Integer>(sum);
     }
