@@ -1,27 +1,27 @@
-package com.example.javascriptbootdome01.Scheduled;
-
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-/**
- * @BelongsProject: JavaScriptBootDome01  //项目名
- * @BelongsPackage: com.example.javascriptbootdome01.Scheduled  //包名
- * @ClassName e                //类名
- * @Author: laozaza                   //作者
- * @CreateTime: 2023-10-24  13:50  //时间
- **/
-@Service
-public class ScheduledTaskService {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private Integer count1 = 1;
-    private Integer count2 = 1;
-    private Integer count3 = 1;
-
-    // 使用fixedRate属性，每10秒执行一次任务，任务执行完后休眠5秒
+//package com.example.javascriptbootdome01.Scheduled;
+//
+//import org.springframework.scheduling.annotation.Async;
+//import org.springframework.scheduling.annotation.Scheduled;
+//import org.springframework.stereotype.Service;
+//
+//import java.text.SimpleDateFormat;
+//import java.util.Date;
+//
+///**
+// * @BelongsProject: JavaScriptBootDome01  //项目名
+// * @BelongsPackage: com.example.javascriptbootdome01.Scheduled  //包名
+// * @ClassName e                //类名
+// * @Author: laozaza                   //作者
+// * @CreateTime: 2023-10-24  13:50  //时间
+// **/
+//@Service
+//public class ScheduledTaskService {
+//    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//    private Integer count1 = 1;
+//    private Integer count2 = 1;
+//    private Integer count3 = 1;
+//
+//    // 使用fixedRate属性，每10秒执行一次任务，任务执行完后休眠5秒
 //    @Async
 //    @Scheduled(fixedRate = 10000)
 //    public void scheduledTaskWithFixedRate() throws InterruptedException {
@@ -77,5 +77,5 @@ public class ScheduledTaskService {
 //    public void scheduledTaskCron() {
 //        System.out.println(String.format("cron第%s次执行，当前时间为：%s", count3++, dateFormat.format(new Date())));
 //    }
-}
-
+//}
+//
